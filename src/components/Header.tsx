@@ -65,10 +65,13 @@ const Header: FC<{ dark?: boolean }> = ({ dark = false }) => {
         >
           Resume
         </Link>
-        <NavMenuMobileButton dialogStore={mobileHeaderNavDialogStore} />
+        <NavMenuMobileButton
+          dialogStore={mobileHeaderNavDialogStore}
+          dark={dark}
+        />
 
         {mobileHeaderNavDialogIsMounted && (
-          <NavListMobile dialogStore={mobileHeaderNavDialogStore} />
+          <NavListMobile dialogStore={mobileHeaderNavDialogStore} dark={dark} />
         )}
       </div>
     </div>

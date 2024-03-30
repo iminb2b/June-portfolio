@@ -1,10 +1,9 @@
 import { DialogDisclosure, DialogStore } from "@ariakit/react/dialog";
 import { css } from "@emotion/react";
-import { FC, memo, useContext } from "react";
+import { FC, memo } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import colors from "@/value/colors";
-import { AppContext } from "@/context/AppContext";
 const iconTextColumn = css`
   background-color: transparent;
   border: none;
@@ -13,19 +12,24 @@ const iconTextColumn = css`
   }
 `;
 
-const icon = css`
+const icon = ({ dark }: { dark: boolean }) => css`
   font-size: 2rem;
-  color: ${colors.black};
+  color: ${dark ? colors.white : colors.black};
 `;
 
 const NavMenuMobileButton: FC<{
   dialogStore: DialogStore;
-}> = memo(({ dialogStore }) => {
+  dark: boolean;
+}> = memo(({ dialogStore, dark }) => {
   const dialogIsMounted = dialogStore.useState("mounted");
 
   return (
     <DialogDisclosure css={iconTextColumn} store={dialogStore}>
-      {dialogIsMounted ? <CloseIcon css={icon} /> : <MenuIcon css={icon} />}
+      {dialogIsMounted ? (
+        <CloseIcon css={icon({ dark })} />
+      ) : (
+        <MenuIcon css={icon({ dark })} />
+      )}
     </DialogDisclosure>
   );
 });

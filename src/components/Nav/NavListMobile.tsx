@@ -37,7 +37,8 @@ export type NavInfo = {
 
 const NavListMobile: FC<{
   dialogStore: DialogStore;
-}> = ({ dialogStore }) => {
+  dark: boolean;
+}> = ({ dialogStore, dark }) => {
   const router = useRouter();
 
   const navListInfo: NavInfo[] = [
@@ -74,6 +75,7 @@ const NavListMobile: FC<{
     <Dialog css={container} modal store={dialogStore}>
       {navListInfo.map((item, index) => (
         <NavListItem
+          dark={dark}
           item={item}
           key={index}
           isActive={router.asPath === item.url}
