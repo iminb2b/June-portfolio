@@ -13,26 +13,19 @@ const iconTextColumn = css`
   }
 `;
 
-const icon = ({ darkmode }: { darkmode: boolean }) => css`
+const icon = css`
   font-size: 2rem;
-  color: ${darkmode ? colors.white : colors.black};
+  color: ${colors.black};
 `;
 
 const NavMenuMobileButton: FC<{
   dialogStore: DialogStore;
 }> = memo(({ dialogStore }) => {
-  const {
-    state: { darkmode },
-  } = useContext(AppContext);
   const dialogIsMounted = dialogStore.useState("mounted");
 
   return (
     <DialogDisclosure css={iconTextColumn} store={dialogStore}>
-      {dialogIsMounted ? (
-        <CloseIcon css={icon({ darkmode })} />
-      ) : (
-        <MenuIcon css={icon({ darkmode })} />
-      )}
+      {dialogIsMounted ? <CloseIcon css={icon} /> : <MenuIcon css={icon} />}
     </DialogDisclosure>
   );
 });

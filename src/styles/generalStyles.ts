@@ -2,8 +2,7 @@ import colors from "@/value/colors";
 import { css } from "@emotion/react";
 
 export const contentContainer = css`
-  max-width: 1400px;
-  padding: 1rem;
+  max-width: 1688px;
 `;
 
 export const sectionService = ({ darkmode }: { darkmode: boolean }) => css`

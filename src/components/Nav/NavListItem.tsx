@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { css } from "@emotion/react";
 import { NavInfo } from "./NavList";
 import colors from "@/value/colors";
-import { AppContext } from "@/context/AppContext";
 
-const link = ({ darkmode }: { darkmode: boolean }) => css`
+const link = ({ dark }: { dark: boolean }) => css`
   transition: all 0.3s ease;
   position: relative;
-  text-transform: uppercase;
+  font-size: 1.25rem;
 
   &:hover {
     &::after {
@@ -16,24 +15,24 @@ const link = ({ darkmode }: { darkmode: boolean }) => css`
       position: absolute;
       bottom: -4px;
       height: 2px;
-      background-color: ${darkmode ? colors.white : colors.textPrimary};
+      background-color: ${dark ? colors.white : colors.textPrimary};
       width: 80%;
       left: 10%;
     }
   }
 `;
 
-const activeLink = ({ darkmode }: { darkmode: boolean }) => css`
-  color: ${darkmode ? colors.white : colors.black};
+const activeLink = ({ dark }: { dark: boolean }) => css`
+  color: ${dark ? colors.yellow : colors.black};
   position: relative;
-  text-transform: uppercase;
+  font-size: 1.25rem;
 
   &::after {
     content: "";
     position: absolute;
     bottom: -4px;
     height: 2px;
-    background-color: ${darkmode ? colors.white : colors.black};
+    background-color: ${dark ? colors.yellow : colors.black};
     width: 80%;
     left: 10%;
   }
@@ -42,15 +41,12 @@ const activeLink = ({ darkmode }: { darkmode: boolean }) => css`
 const NavListItem: FC<{
   item: NavInfo;
   isActive: boolean;
-}> = ({ item, isActive }) => {
-  const {
-    state: { darkmode },
-  } = useContext(AppContext);
-
+  dark: boolean;
+}> = ({ item, dark, isActive }) => {
   return (
     <Link
       href={item.url}
-      css={isActive ? activeLink({ darkmode }) : link({ darkmode })}
+      css={isActive ? activeLink({ dark }) : link({ dark })}
     >
       {item.name}
     </Link>

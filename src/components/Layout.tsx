@@ -1,9 +1,9 @@
 import { css, Global } from "@emotion/react";
-import { FC, memo, ReactNode, useContext, useEffect } from "react";
+import { FC, memo, ReactNode } from "react";
 import Header from "./Header";
 import globalStyles from "@/styles/globalStyles";
-import { AppContext } from "@/context/AppContext";
 import colors from "@/value/colors";
+import Footer from "./Footer";
 
 const pageContent = css`
   flex: 1 0 auto;
@@ -11,13 +11,13 @@ const pageContent = css`
   height: 100%;
 `;
 
-const pageContainer = ({ darkmode }: { darkmode: boolean }) => css`
+const pageContainer = css`
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: calc(100vh);
-  background-color: ${darkmode ? colors.black : colors.white};
-  color: ${darkmode ? colors.white : colors.textPrimary};
+  background-color: ${colors.white};
+  color: ${colors.textPrimary};
   background-repeat: repeat-y;
   background-size: cover;
   position: relative;
@@ -25,27 +25,13 @@ const pageContainer = ({ darkmode }: { darkmode: boolean }) => css`
 
 const Layout: FC<{
   children: ReactNode;
+  darkBackground: boolean;
 }> = memo(({ children }) => {
-  const {
-    state: { darkmode },
-    dispatch,
-  } = useContext(AppContext);
-
-  useEffect(() => {
-    const darkMode = localStorage.getItem("darkmode") === "true";
-
-    dispatch({ type: "enableDarkMode", payload: darkMode });
-  }, []);
-
   return (
-    <div css={pageContainer({ darkmode })}>
+    <div css={pageContainer}>
       <Global styles={globalStyles} />
 
-      <Header />
-
       <div css={pageContent}>{children}</div>
-
-      {/* <Footer /> */}
     </div>
   );
 });

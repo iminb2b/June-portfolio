@@ -18,14 +18,14 @@ const container = css`
   padding-top: 10rem;
 `;
 
-const contentWrapper = ({ darkmode }: { darkmode: boolean }) => css`
+const contentWrapper = css`
   ${contentContainer}
 
   gap: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  color: ${darkmode ? colors.white : colors.black};
+  color: ${colors.black};
 `;
 
 const error404 = css`
@@ -35,21 +35,21 @@ const error404 = css`
 
 const ErrorPageContent: NextPage = () => {
   const {
-    state: { darkmode, lang },
+    state: { darkmode },
   } = useContext(AppContext);
 
   return (
     <PageContainer>
       <PageMeta title="Page Not Found" description="Page Not Found" />
       <div css={container}>
-        <div css={contentWrapper({ darkmode })}>
+        <div css={contentWrapper}>
           <div>
             <p css={error404}>404</p>
             <h1>ERROR: Page Not Found</h1>
           </div>
           <Link
             css={buttonStyles({ size: "large", darkmode })}
-            href={routeLinks.homePage({ lang })}
+            href={routeLinks.homePage()}
           >
             Go to Home Page
           </Link>

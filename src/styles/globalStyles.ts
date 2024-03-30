@@ -8,6 +8,14 @@ export const inter = Inter({
 });
 
 const globalStyles = css`
+  @font-face {
+    font-family: "confiteria_scriptbold";
+    src: url("/images/confiteriascript-bold-webfont.woff2") format("woff2"),
+      url("/images/confiteriascript-bold-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
   :root {
     --max-width: 1100px;
     --border-radius: 12px;

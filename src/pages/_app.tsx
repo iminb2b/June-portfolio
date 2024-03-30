@@ -8,9 +8,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { AppContextType, AppProvider } from "@/context/AppContext";
 import { useEffect } from "react";
-import routeLinks from "@/routeLinks";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps & { darkBackground: boolean }) {
   const router = useRouter();
 
   const localeInfo = router.asPath.slice(1, 3);
@@ -32,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
   if (pageProps.error) {
     return (
       <AppProvider initialState={initialContextValue}>
-        <Layout>
+        <Layout darkBackground={pageProps.darkBackground}>
           <ErrorPageContent />
         </Layout>
       </AppProvider>
@@ -41,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <AppProvider initialState={initialContextValue}>
-      <Layout>
+      <Layout darkBackground={pageProps.darkBackground}>
         <Component {...pageProps} />
       </Layout>
     </AppProvider>

@@ -1,13 +1,14 @@
-import { FC, useContext, useEffect, useState } from "react";
+import { FC } from "react";
 import { css } from "@emotion/react";
-import { AppContext } from "@/context/AppContext";
 import Logo from "./Logo";
 import { contentContainer } from "@/styles/generalStyles";
 import NavList from "./Nav/NavList";
 import { useDialogStore } from "@ariakit/react";
 import NavMenuMobileButton from "./Nav/NavMenuMobileButton";
 import NavListMobile from "./Nav/NavListMobile";
-const container = ({ scrollNav }: { scrollNav: boolean }) => css`
+import colors from "@/value/colors";
+import Link from "next/link";
+const container = ({ dark }: { dark: boolean }) => css`
   width: 100%;
   position: sticky;
   top: 0;
@@ -18,82 +19,52 @@ const container = ({ scrollNav }: { scrollNav: boolean }) => css`
   justify-content: center;
   transition: all 0.3s ease;
   padding: 0.5rem 1rem;
-
-  width: ${scrollNav ? "80%" : "100%"};
-  max-width: ${scrollNav ? "1000px" : "100%"};
+  height: 6rem;
+  width: 100%;
+  background-color: ${dark ? "#000" : "#fff"};
+  color: ${!dark ? "#000" : "#fff"};
+  padding: 0 1rem;
 `;
 
 const contentWrapper = css`
   ${contentContainer}
 
+  max-width:1400px;
   width: 100%;
   transition: all 0.3s ease;
   display: flex;
   justify-content: space-between;
-  padding: 0;
-
-  border-radius: 3rem;
+  padding: 1rem 0;
+  position: relative;
+`;
+const resumeButton = css`
+  height: 2.75rem;
+  display: block;
+  line-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 2rem;
+  background-color: ${colors.yellow};
+  font-weight: bold;
+  color: #000;
 `;
 
-const lightModeContainer = ({ scrollNav }: { scrollNav: boolean }) => css`
-  ${contentWrapper}
-
-  padding: ${scrollNav ? "0.5rem 1rem" : "0.5rem 0"};
-  background-color: ${scrollNav ? "rgba(255, 255, 255, 0.95)" : "transparent"};
-  box-shadow: ${scrollNav ? "rgba(0, 0, 0, 0.1) 0px 4px 12px;" : "none"};
-`;
-
-const darkModeContainer = ({ scrollNav }: { scrollNav: boolean }) => css`
-  ${contentWrapper}
-  padding: ${scrollNav ? "0.5rem 1rem" : "0.5rem 0"};
-
-  background-color: ${scrollNav ? "rgba(0,0,0, 0.5)" : "transparent"};
-  box-shadow: ${scrollNav ? "rgba(0, 0, 0, 0.1) 0px 4px 12px;" : "none"};
-`;
-
-const Header: FC = () => {
-  // const strings = useContext(AppContext);
-  const {
-    state: { darkmode },
-  } = useContext(AppContext);
-
-  const [scrollNav, setScrollNav] = useState(false);
-  const changeNav = () => {
-    if (window.scrollY >= 80) {
-      setScrollNav(true);
-    } else {
-      setScrollNav(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", changeNav);
-  }, []);
-
+const Header: FC<{ dark?: boolean }> = ({ dark = false }) => {
   const mobileHeaderNavDialogStore = useDialogStore();
   const mobileHeaderNavDialogIsMounted =
     mobileHeaderNavDialogStore.useState("mounted");
 
   return (
-    <div
-      css={container({
-        scrollNav: mobileHeaderNavDialogIsMounted || scrollNav,
-      })}
-    >
-      <div
-        css={
-          darkmode
-            ? darkModeContainer({
-                scrollNav: mobileHeaderNavDialogIsMounted || scrollNav,
-              })
-            : lightModeContainer({
-                scrollNav: mobileHeaderNavDialogIsMounted || scrollNav,
-              })
-        }
-      >
+    <div css={container({ dark })}>
+      <div css={contentWrapper}>
         <Logo />
-        <NavList />
-
+        <NavList dark={dark} />
+        <Link
+          href="/pdf/June Duyen Nguyen - Resume.pdf"
+          css={resumeButton}
+          target="__blank"
+        >
+          Resume
+        </Link>
         <NavMenuMobileButton dialogStore={mobileHeaderNavDialogStore} />
 
         {mobileHeaderNavDialogIsMounted && (

@@ -14,7 +14,7 @@ const PageMeta: FC<{
       <meta name="description" content={description ?? ""} />
       <meta name="twitter:description" content={description ?? ""} />
       <meta property="og:description" content={description ?? ""} />
-      <link rel="icon" href="/m.svg" sizes="any" />
+      <link rel="icon" href="/logo.svg" sizes="any" />
     </Head>
   );
 });

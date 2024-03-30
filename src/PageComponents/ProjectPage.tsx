@@ -8,82 +8,102 @@ import { contentContainer } from "@/styles/generalStyles";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { projectInfos } from "@/value/projectsInfo";
-import Link from "next/link";
 import colors from "@/value/colors";
-import buttonStyles from "@/styles/buttonStyles";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Image from "next/image";
+import DesignProcessSection from "@/components/ProjectPage/DesignProcessSection";
 
 const container = css`
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   min-height: calc(100vh - 5rem);
+  align-items: center;
   padding: 2rem 0;
+  gap: 5rem;
 `;
 
 const contentWrapper = css`
   ${contentContainer}
-
+  max-width: 1400px;
   gap: 2rem;
-
+  padding: 0 1rem;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const headingContainer = css`
+  padding: 3rem 0;
+  background-color: ${colors.yellow};
+  width: 100%;
+  text-align: center;
+`;
+
+const headingTitle = css`
+  font-size: 2.5rem;
+  font-weight: 500;
+`;
+
+const headingDescription = css`
+  font-weight: 700;
+  font-size: 1.5rem;
 `;
 
 const infoContainer = css`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
-  padding: 3rem 0;
+  grid-gap: 3rem;
+  max-width: 1200px;
 
   @media screen and (max-width: 900px) {
     grid-template-columns: 1fr;
   }
 `;
 
-const image = css`
-  width: 100%;
+const info2Container = css`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3rem;
+  max-width: 1200px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-const title = css`
-  font-size: clamp(2rem, 5vw, 4rem);
-  margin-top: 3rem;
-`;
-
-const toolList = css`
-  list-style-type: none;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-`;
-const infoContentContainer = css`
+const infoItemContainer = css`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-`;
-
-const detailsContainer = css`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 90%;
-`;
-
-const mediumText = css`
-  font-weight: 600;
-`;
-
-const description = css`
-  line-height: 1.5;
-`;
-
-const toolItem = ({ darkmode }: { darkmode: boolean }) => css`
-  color: ${darkmode ? colors.white : colors.black};
-  padding: 0.5rem;
-`;
-
-const linkContainer = css`
-  display: flex;
   gap: 2rem;
-  margin-top: 2rem;
+`;
+
+const infoItem = css`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const infoTitle = css`
+  font-size: 1.25rem;
+`;
+
+const infoDescription = css``;
+
+const productsContainer = css`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 5rem 0;
+  align-items: center;
+
+  h1 {
+    height: 4rem;
+  }
 `;
 
 const ProjectPage: NextPage = () => {
@@ -101,63 +121,60 @@ const ProjectPage: NextPage = () => {
   return (
     <PageContainer>
       <PageMeta title="Min - Projects Page" description={"Nhung Nguyen"} />
+      <Header />
       <div css={container}>
+        <div css={headingContainer}>
+          <h1 css={headingTitle}>{project.title}</h1>
+          <p css={headingDescription}>{project.description}</p>
+        </div>
         <div css={contentWrapper}>
-          <img src={project.img} css={image} />
-          <h1 css={title}>{project.title}</h1>
-
           <div css={infoContainer}>
-            <div css={infoContentContainer}>
-              <div css={detailsContainer}>
-                {project.objectives && <h3 css={mediumText}>Objectives:</h3>}
-                <p css={description}>{project.objectives}</p>
-              </div>
-              <div css={detailsContainer}>
-                <h3 css={mediumText}>Description:</h3>
-                <p css={description}>{project.description}</p>
-              </div>
+            <div css={infoItem}>
+              <h3 css={infoTitle}>Overview</h3>
+              <p css={infoDescription}>{project.projectPreview}</p>
             </div>
-            <div css={infoContentContainer}>
-              <h3 css={mediumText}>Tools</h3>
-              <ul css={toolList}>
-                {project.tool.map((item, index) => (
-                  <li key={index} css={toolItem({ darkmode })}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              {project.features.length > 0 && (
-                <h3 css={mediumText}>Features</h3>
-              )}
-              <ul css={toolList}>
-                {project.features.map((item, index) => (
-                  <li key={index} css={toolItem({ darkmode })}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div css={linkContainer}>
-                <Link
-                  href={project.link}
-                  css={buttonStyles({ darkmode })}
-                  target="_blank"
-                >
-                  Website
-                </Link>
-                {project.sourceCode && (
-                  <Link
-                    href={project.sourceCode}
-                    target="_blank"
-                    css={buttonStyles({ darkmode })}
-                  >
-                    Source Code
-                  </Link>
-                )}
+            <div css={info2Container}>
+              <div css={infoItemContainer}>
+                <div css={infoItem}>
+                  <h3 css={infoTitle}>Category</h3>
+                  <p css={infoDescription}>{project.category}</p>
+                </div>
+                <div css={infoItem}>
+                  <h3 css={infoTitle}>Duration</h3>
+                  <p css={infoDescription}>{project.duration}</p>
+                </div>
+              </div>
+              <div css={infoItemContainer}>
+                <div css={infoItem}>
+                  <h3 css={infoTitle}>Tools</h3>
+                  <p css={infoDescription}>{project.tools}</p>
+                </div>
+                <div css={infoItem}>
+                  <h3 css={infoTitle}>Deliver</h3>
+                  <p css={infoDescription}>{project.deliver}</p>
+                </div>
               </div>
             </div>
           </div>
+
+          {project.designProcess && (
+            <div css={productsContainer}>
+              <h1>Design Process</h1>
+              {project.designProcess?.map((item, index) => (
+                <DesignProcessSection item={item} key={index} />
+              ))}
+            </div>
+          )}
+          {project.finalProduct && (
+            <div css={productsContainer}>
+              {project.finalProduct?.map((item, index) => (
+                <DesignProcessSection item={item} key={index} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
+      <Footer />
     </PageContainer>
   );
 };
