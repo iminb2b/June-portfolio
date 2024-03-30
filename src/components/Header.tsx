@@ -10,7 +10,7 @@ import colors from "@/value/colors";
 import Link from "next/link";
 const container = ({ dark }: { dark: boolean }) => css`
   width: 100%;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -59,7 +59,7 @@ const Header: FC<{ dark?: boolean }> = ({ dark = false }) => {
         <Logo />
         <NavList dark={dark} />
         <Link
-          href="/pdf/June Duyen Nguyen - Resume.pdf"
+          href="/pdf/Resume - June Nguyen.pdf"
           css={resumeButton}
           target="__blank"
         >

@@ -11,6 +11,8 @@ const container = css`
   width: 100%;
   overflow-x: hidden;
   position: relative;
+
+  height: 100vh;
 `;
 const contentWrapper = css`
   position: relative;
@@ -18,7 +20,7 @@ const contentWrapper = css`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: calc(100vh - 6rem);
+  height: 100vh;
   gap: 2rem;
   justify-content: center;
   width: 100%;
@@ -32,7 +34,8 @@ const videoContainer = css`
   position: absolute;
   top: 0;
   width: 1688px;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +50,7 @@ const contentOverlay = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 32vh;
+  padding-top: 35vh;
   gap: 2.5rem;
 `;
 
@@ -147,7 +150,6 @@ const HomePageHero: FC = () => {
             <div>Product designer</div>
           </div>
         </div>
-        d d
       </div>
     </div>
   );

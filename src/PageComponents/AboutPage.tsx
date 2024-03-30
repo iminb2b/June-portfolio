@@ -10,7 +10,7 @@ import Link from "next/link";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const container = css`
-  margin-top: 6rem;
+  margin-top: 10rem;
 
   max-width: 1200px;
 
@@ -90,7 +90,7 @@ const AboutPage: NextPage = () => {
           </p>
 
           <Link
-            href="/pdf/June Duyen Nguyen - Resume.pdf"
+            href="/pdf/Resume - June Nguyen.pdf"
             css={resumeButton}
             target="__blank"
           >

@@ -9,6 +9,7 @@ import insta from "@/assets/img/87390.png";
 import linkedIn from "@/assets/img/icon-linkedin-1.png";
 import Header from "@/components/Header";
 const container = css`
+  margin-top: 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
