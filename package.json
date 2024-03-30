@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "knip": "knip",
     "start": "next start",
     "lint": "next lint",
     "ts-json-schema-generator": "ts-json-schema-generator --no-type-check --out='src/strings/strings.schema.json' --path='src/types/stringTypes.ts' --tsconfig='tsconfig.json' --type='Strings'"
@@ -20,17 +21,12 @@
     "@mui/material": "^5.15.1",
     "aos": "^2.3.4",
     "framer-motion": "^11.0.24",
-    "googleapis": "^129.0.0",
-    "keen-slider": "^6.8.6",
+    "knip": "^5.7.0",
     "next": "14.0.4",
     "react": "^18.2.0",
-    "react-animated-cursor": "^2.11.2",
     "react-dom": "^18.2.0",
-    "react-fast-marquee": "^1.6.4",
-    "react-scroll": "^1.9.0",
     "sharp": "^0.33.2",
-    "ts-json-schema-generator": "^1.1.2",
-    "ts-pattern": "^5.0.8"
+    "ts-json-schema-generator": "^1.1.2"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",

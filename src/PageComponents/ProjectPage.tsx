@@ -120,7 +120,7 @@ const ProjectPage: NextPage = () => {
 
   return (
     <PageContainer>
-      <PageMeta title="Min - Projects Page" description={"Nhung Nguyen"} />
+      <PageMeta title={project.title} description={project.title} />
       <Header />
       <div css={container}>
         <div css={headingContainer}>
