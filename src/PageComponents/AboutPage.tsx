@@ -66,6 +66,7 @@ const AboutPage: NextPage = () => {
           src={aboutMe.src}
           height={600}
           width={600}
+          priority
           alt="June"
           css={image}
         />
