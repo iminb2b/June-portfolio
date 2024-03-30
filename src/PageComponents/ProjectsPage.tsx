@@ -36,7 +36,7 @@ const ProjectsPage: NextPage = () => {
 
   return (
     <PageContainer dark={true}>
-      <PageMeta title="Min - Projects Page" description={"Nhung Nguyen"} />
+      <PageMeta title="June - Projects Page" description={" Duyen Nguyen"} />
       <Header dark />
       <div css={projectContainer}>
         <h1 css={title}>Work</h1>

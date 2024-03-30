@@ -26,7 +26,7 @@ const icon = css`
 const HomePage: NextPage = () => {
   return (
     <PageContainer dark={false}>
-      <PageMeta title="June - Duyen Nguyen" description={"Nhung Nguyen"} />
+      <PageMeta title="June - Duyen Nguyen" description={"Duyen Nguyen"} />
       <Header dark={false} />
       <HomePageHero />
       <HomePageMyServices />
