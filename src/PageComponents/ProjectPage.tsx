@@ -108,13 +108,12 @@ const productsContainer = css`
 
 const ProjectPage: NextPage = () => {
   const router = useRouter();
-  const {
-    state: { darkmode },
-  } = useContext(AppContext);
 
+  console.log(router);
   const slug = router.query.slug;
 
   const project = projectInfos.filter((project) => project.slug === slug)[0];
+  console.log(project);
 
   if (!project) return <ErrorPageContent />;
 
